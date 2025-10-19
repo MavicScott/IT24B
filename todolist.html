@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <style>
+        .done {
+            text-decoration: line-through;
+            color: gray;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To do list</h1>
+    <input type="text" id="taskInput" placeholder="Add a task..." />
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList">Tasks goes here</ul>
+
+    <script>
+
+        function addTask() {
+            const taskText = getTaskText();
+
+            if (taskText) {
+                addTaskItem(taskText);
+            } else {
+                console.log("No task entered");
+            }
+        }
+
+        function getTaskText() {
+            const input = document.getElementById("taskInput");
+            const value = input.value.trim();
+            console.log("getTaskText() called -> ", value);
+            return value;
+        }
+
+        function addTaskItem(taskText) {
+            const li = document.createElement("li");
+            li.textContent = taskText;
+
+
+            document.getElementById("taskList").appendChild(li);
+            console.log("addTaskItem() called -> ", taskText, Date());
+
+            const deleteBtn = createDeleteButton(li);
+            li.appendChild(deleteBtn);
+
+            const taskSpan = document.createElement("span");
+            taskSpan.textContent = taskText;
+            const editBtn = createEditButton(li, taskSpan);
+            li.appendChild(editBtn);
+
+            const doneBtn = createDoneButton(li);
+            li.appendChild(doneBtn);
+        }
+
+        function createDeleteButton(li) {
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = " Delete ";
+            deleteBtn.className = "delete-btn";
+            deleteBtn.style.marginLeft = "8px";
+            deleteBtn.onclick = () => handleDeleteClick(li);
+
+            console.log("createDeleteButton() called ->", li.textContent);
+            return deleteBtn;
+        }
+
+        function handleDeleteClick(li) {
+            console.log("handleDeleteClick() ->", li.textContent.replace(" X ", "").trim(), Date());
+            li.remove();
+        }
+
+        function createEditButton(li, taskSpan) {
+            const editBtn = document.createElement("button");
+            editBtn.textContent = "Edit";
+            editBtn.className = "edit-btn";
+            editBtn.style.marginLeft = "8px";
+            editBtn.onclick = () => handleEditClick(li);
+
+            console.log("createEditButton() called ->:", taskSpan.textContent);
+            return editBtn;
+        }
+
+        function handleEditClick(li) {
+            const currentText = li.firstChild.textContent.trim();
+            console.log("handleEditClick() -> current:", currentText, Date());
+
+            const newText = prompt("Edit your task", currentText);
+
+            if (newText !== null && newText.trim() !== "") {
+                li.firstChild.textContent = newText.trim();
+                console.log("handleEditClick() -> updated to: ", newText.trim(), Date());
+            } else {
+                console.log("handleEditClick -> no changes made");
+            }
+        }
+
+        function createDoneButton(li) {
+            const doneBtn = document.createElement("button");
+            doneBtn.textContent = "Done";
+            doneBtn.style.marginLeft = "8px";
+            doneBtn.onclick = () => {
+                console.log(li);
+                li.classList.add("done");
+                const buttons = li.querySelectorAll("button");
+
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                });
+
+                console.log("Task Completed", li.textContent, Date());
+            }
+            return doneBtn;
+        }
+
+    </script>
+</body>
+
+</html>
