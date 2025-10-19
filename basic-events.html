@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html Lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+      
+    </head>
+<body>
+      <h1>Hello World</h1>
+
+         <h4>Username</h4>
+    <input type="text" id="textbox" placeholder="Enter your Username tarunga" 
+           oninput="updateDisplay()"> 
+
+   <h4>Password</h4>
+    <input type="password" id="password" placeholder="Enter your Password pag dali" 
+           oninput="recordPassword()">
+<h5>
+  This area helps you display your username in a large size to help you see it clearly
+  <details style="display:inline;">
+    <summary style="display:inline; cursor:pointer;">.....</summary>
+    <span style="display:inline;"> na may mahal na siyang iba</span>
+  </details>
+</h5>
+
+
+
+    <h1 id="displayText"></h1>
+
+    <script>
+
+        function updateDisplay(){
+            var textbox = document.getElementById("textbox");
+            var displayText = document.getElementById("displayText");
+
+            displayText.textContent = textbox.value;
+        console.log(textbox.value +" "+ Date());
+        }
+
+        function recordPassword(){
+            var password = documen.getElementById("passsword");
+            consol.log(password.value +" "+Date());
+        }
+        </script>
+        </body>
+</html>
