@@ -1,0 +1,19 @@
+[{
+        "name": "ICS Laboratory 1",
+        "title": "ICS Lab U",
+        "description": "This is the ICS Laboratory 1, yipee",
+        "img": "https://i.pinimg.com/236x/5b/0e/69/5b0e69fdb1cbad6fa3962935312e9869.jpg",
+        "lat": 8.3593,
+        "lng": 124.8691,
+        "locationType": "Laboratory"
+    },
+    {
+        "name": "Comfort Room 1",
+        "title": "CR nga mahoo",
+        "description": "",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4ikTDEmZGlqnCJCTdazYZttfv0rxVtiBydA&s",
+        "lat": 8.359009695166359,
+        "lng": 124.86911436078864,
+        "locationType": "Other"
+    }
+]
